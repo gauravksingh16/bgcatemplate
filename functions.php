@@ -6,9 +6,20 @@
  * 
  */
 
- if (! defined( ' ') )
-require_once ''
- function bgcatemplate_enqueue_scripts() {
+if (! defined( 'BGCA_TEMPLATE_DIR_PATH') ){
+
+      define( 'BGCA_TEMPLATE_DIR_PATH', untrailingslashit( get_template_directory() ) );
+ }
+
+require_once BGCA_TEMPLATE_DIR_PATH . '/inc/helpers/autoloader.php';
+
+function bgcatemplate_get_theme_instance() {
+    \BGCA_TEMPLATE\Inc\BGCA_TEMPLATE::get_instance();
+}
+
+bgcatemplate_get_theme_instance();
+
+function bgcatemplate_enqueue_scripts() {
 
 
     wp_register_style( 'style-css', get_stylesheet_uri(), [], filemtime( get_template_directory(). '/style.css'), 'all' );
@@ -22,6 +33,6 @@ require_once ''
     wp_enqueue_script('bootstrap-js');
  }
 
- add_action('wp_enqueue_scripts', 'bgcatemplate_enqueue_scripts')
+add_action('wp_enqueue_scripts', 'bgcatemplate_enqueue_scripts')
 ?>
 

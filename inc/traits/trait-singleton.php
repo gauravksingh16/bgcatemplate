@@ -21,5 +21,6 @@ triat Singleton {
 
             do_action(sprintf('bgca_template_singleton_init%s', $called_class));
         }
+        return $instance[ $called_class ];
     }
 }
